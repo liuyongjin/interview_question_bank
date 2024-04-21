@@ -2,7 +2,7 @@
 import { OutlinedInput, FormLabel, Button } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { generateFormItems } from "./util";
-import { useMemo } from "react";
+import { useMemo, PropsWithChildren } from "react";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,25 +19,24 @@ export function BaseForm(props: any) {
 	// 	NAME: zfd.text(z.string().min(2, "Too short").max(20, "Too long")),
 	// });
 
-	const formSchema = z
-		.object({
-			NAME: z.string().nonempty("username cannot be empty")
-            // z.string().superRefine((val, ctx) => {
-			// 	if (val.length === 0) {
-			// 		ctx.addIssue({
-			// 			code: z.ZodIssueCode.invalid_type,
-			// 			expected: "string",
-			// 			received: "string",
-			// 			message: "required",
-			// 			// fatal: true,
-			// 		});
-			// 		return z.NEVER;
-			// 	}
-			// }),
-			// .refine((val) => val.length >= 1, {
-			// 	message: "required",
-			// }),
-		})
+	const formSchema = z.object({
+		NAME: z.string().nonempty("username cannot be empty"),
+		// z.string().superRefine((val, ctx) => {
+		// 	if (val.length === 0) {
+		// 		ctx.addIssue({
+		// 			code: z.ZodIssueCode.invalid_type,
+		// 			expected: "string",
+		// 			received: "string",
+		// 			message: "required",
+		// 			// fatal: true,
+		// 		});
+		// 		return z.NEVER;
+		// 	}
+		// }),
+		// .refine((val) => val.length >= 1, {
+		// 	message: "required",
+		// }),
+	});
 	// 	.required({
 	// 		NAME: true,
 	// 	});
